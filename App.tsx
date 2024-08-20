@@ -1,21 +1,21 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import Home from '@screens/Home'
+import { StatusBar } from 'expo-status-bar'
+import React from 'react'
+import { KeyboardAvoidingView, Platform } from 'react-native'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+	return (
+		<SafeAreaProvider style={{ flex: 1, backgroundColor: '#ff' }}>
+			<StatusBar backgroundColor="transparent" style="dark" translucent />
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+			<KeyboardAvoidingView
+				style={{ flex: 1 }}
+				behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+			>
+				<Home />
+			</KeyboardAvoidingView>
+		</SafeAreaProvider>
+	)
+}
